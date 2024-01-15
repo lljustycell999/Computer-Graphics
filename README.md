@@ -2,7 +2,7 @@
 This repository contains the projects completed as part of the CSC 470 - Computer Graphics course at SUNY Oswego taught by Professor Aleksander Pantaleev.
 
 # Homework 1 Specification:
-Implement a Sierpinski carpet in WebGL. Subdivide it to at least three steps. Use the example code for the Hello Square demo, as well as the Sierpinski gasket, for reference.
+Implement a Sierpinski carpet in WebGL. Subdivide it to at least three steps.
 
 # Homework 2 Specification:
 Upgrade HW1 by adding manipulation and animation to the carpet. Add a slider to your web page, starting at 1 and going up to 7; the position of the slider should determine the number of subdivisions of your carpet. In addition, add a button to your page. When the button is clicked, every square of the carpet should start rotating. If you click the button again, the rotation should stop. If you click on the canvas while the squares are rotating, they should invert their rotation.
