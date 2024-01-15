@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>2D Sierpinski Gasket</title>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+    //precision mediump float;
+
+    attribute vec4 vPosition;
+    uniform vec3 theta;
+
+    void main(){
+        
+        // Compute the sines and cosines of theta
+        vec3 angles = radians(theta);
+        vec3 c = cos(angles);
+        vec3 s = sin(angles);
+
+        // Calculate the matrices
+        mat4 rx = mat4(1.0, 0.0, 0.0, 0.0,
+                       0.0, c.x, s.x, 0.0,
+                       0.0, -s.x, c.x, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+        
+        mat4 ry = mat4(c.y, 0.0, -s.y, 0.0,
+                       0.0, 1.0, 0.0, 0.0,
+                       s.y, 0.0, c.y, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+
+        mat4 rz = mat4(c.z, s.z, 0.0, 0.0,
+                       -s.z, c.z, 0.0, 0.0,
+                       0.0, 0.0, 1.0, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+        
+        gl_Position = rz * ry * rx * vPosition;
+        gl_Position.z = -gl_Position.z; 
+    }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+
+    void main(){
+        gl_FragColor = vec4(0.5, 0.0, 0.5, 1.0);
+    }
+    </script>
+
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script src="gl-matrix-min.js" defer></script>
+    <script type="text/javascript" src="gasket5.js"></script>
+
+</head>
+
+<body>
+
+    <button id="rotateBtn">Rotate!</button>
+    <div>
+        Subdivisions: 0  <input id="slider" type="range"
+        min= "0" max= "6" step = "1" value = "0" />
+        6
+    </div>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+</html>
