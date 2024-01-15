@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>3D Sierpinski Carpet</title>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+    precision mediump float;
+
+    const vec3 lightDirection = normalize(vec3(0, 0, 1.0));
+    const float ambient = 0.1;
+
+    attribute vec3 vPosition;
+    attribute vec2 uv;
+    attribute vec3 normal;
+
+    varying vec2 vUV;
+    varying float vBrightness;
+    varying vec3 vLightDirection; // Pass light direction to fragment shader
+
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
+    uniform vec3 theta;
+    uniform mat4 normalMatrix;
+
+    void main(){
+
+        // Compute the sines and cosines of theta
+        vec3 angles = radians(theta);
+        vec3 c = cos(angles);
+        vec3 s = sin(angles);
+
+        // Calculate the matrices
+        mat4 rx = mat4(1.0, 0.0, 0.0, 0.0,
+                       0.0, c.x, s.x, 0.0,
+                       0.0, -s.x, c.x, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+        
+        mat4 ry = mat4(c.y, 0.0, -s.y, 0.0,
+                       0.0, 1.0, 0.0, 0.0,
+                       s.y, 0.0, c.y, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+
+        mat4 rz = mat4(c.z, s.z, 0.0, 0.0,
+                       -s.z, c.z, 0.0, 0.0,
+                       0.0, 0.0, 1.0, 0.0,
+                       0.0, 0.0, 0.0, 1.0);
+        
+        gl_Position = projectionMatrix * modelViewMatrix * rz * ry * rx *
+            vec4(vPosition, 1.0);
+        gl_Position.z = -gl_Position.z; 
+
+        vec3 worldNormal = (normalMatrix * rz * ry * rx * vec4(normal, 1.0)).xyz;
+        float diffuse = max(0.0, dot(worldNormal, lightDirection));
+
+        vBrightness = diffuse + ambient;
+        vUV = uv;
+
+        // New for Homework 6
+        vLightDirection = lightDirection;
+        
+    }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    varying vec2 vUV;
+    varying float vBrightness;
+    varying vec3 vLightDirection;
+
+    uniform sampler2D textureID;
+    uniform sampler2D normalMap;
+    
+    void main(){
+        vec3 normalVec = texture2D(normalMap, vUV).rgb;
+        normalVec = normalVec * 2.0 - 1.0; // Convert from [0, 1]
+        vec3 normalNormal = normalize(normalVec);
+
+        float diffuse = max(dot(normalNormal, vLightDirection), 0.0);
+        vec3 diffuseColor = diffuse * vec3(1.0, 1.0, 1.0);
+
+        vec3 texel = texture2D(textureID, vUV).rgb;
+        texel.xyz *= vBrightness;
+        vec3 diffusedTexel = diffuseColor * texel;
+
+        gl_FragColor = vec4(diffusedTexel, 1.0);
+    }
+    </script>
+
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script src="gl-matrix-min.js" defer></script>
+    <script type="text/javascript" src="normalSierpenskiBrick.js"></script>
+    <script type="text/javascript" src="webgl-lessons-ui.js"></script>
+
+</head>
+
+<body>
+
+    <!-- 
+    Chrome now freezes with anything higher than 4 subdivisions. 
+    This happened with homeworks 5 & 6 
+    -->
+    <div id="notUI">
+        Subdivisions: 0  <input id="slider" type="range"
+        min= "0" max= "4" step = "1" value = "0" />
+        4
+    </div>
+
+    <button id="rotateXBtn">Rotate X</button>
+    <button id="rotateYBtn">Rotate Y</button>
+    <button id="rotateZBtn">Rotate Z</button>
+    <br><br>
+
+    <div id="uiContainer">
+        <div id="ui">
+          <div id="Radius"></div>
+          <div id="ThetaInRadians"></div>
+          <div id="PhiInRadians"></div>
+        </div>
+    </div>
+
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+    <p>Copyright © 2023 Justyce Countryman</p>
+    <p>All rights reserved</p>
+</body>
+</html>
