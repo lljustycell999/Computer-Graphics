@@ -342,7 +342,7 @@ function initThree(){
 
     gl3.useProgram(nightProgram);
 
-    diffuseMap = loadTexture("pexels-francesco-ungaro-998641.jpg");
+    diffuseMap = loadTexture("starNightBackground.jpg");
     //normalMap = loadTexture("goldFoil.jpeg_normal.png");
 
     textureID = gl3.getUniformLocation(nightProgram, 'textureID');
