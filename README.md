@@ -26,5 +26,5 @@ In addition, change the positions of your carpet vertices in the Z direction. Th
 # Homework 7 Specification:
 This is the last homework of the course. Write an interesting and non-trivial graphics demo using everything you have learned in the course. Make it fancy by playing with the shaders, materials, etc. Impress me.
 
-My final project creation was a disco dance floor screensaver, consisting of a bunch of color changing tiles, a night star sky, and a "sorta" 3D disco ball.
+My final project creation was a disco dance floor screensaver, consisting of a bunch of color changing tiles, a night star sky background, and a sorta 3D disco ball.
 
