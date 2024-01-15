@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red109\green109\blue109;\red255\green255\blue255;\red71\green137\blue205;
+\red193\green193\blue193;\red141\green212\blue254;\red194\green126\blue101;\red202\green202\blue202;\red88\green138\blue67;
+\red212\green213\blue154;\red167\green197\blue151;\red193\green193\blue193;}
+{\*\expandedcolortbl;;\cssrgb\c50251\c50251\c50189;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c33936\c61427\c84130;
+\cssrgb\c80088\c80088\c79988;\cssrgb\c61361\c86489\c99746;\cssrgb\c80778\c56830\c46925;\cssrgb\c83229\c83229\c83125;\cssrgb\c41525\c59950\c33208;
+\cssrgb\c86261\c86245\c66529;\cssrgb\c71008\c80807\c65805;\cssrgb\c80000\c80000\c80000;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <!\cf4 \strokec4 DOCTYPE\cf5 \strokec5  \cf6 \strokec6 html\cf2 \strokec2 >\cf5 \strokec5 \
+\cf2 \strokec2 <\cf4 \strokec4 html\cf2 \strokec2 >\cf5 \strokec5 \
+\cf2 \strokec2 <\cf4 \strokec4 head\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 meta\cf5 \strokec5  \cf6 \strokec6 http-equiv\cf5 \strokec5 =\cf7 \strokec7 "Content-Type"\cf5 \strokec5  \cf6 \strokec6 content\cf5 \strokec5 =\cf7 \strokec7 "text/html;charset=utf-8"\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 title\cf2 \strokec2 >\cf5 \strokec5 3D Sierpinski Carpet\cf2 \strokec2 </\cf4 \strokec4 title\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 id\cf8 \strokec8 =\cf7 \strokec7 "vertex-shader"\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "x-shader/x-vertex"\cf2 \strokec2 >\cf5 \strokec5 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \strokec8     \cf4 \strokec4 attribute\cf8 \strokec8  \cf4 \strokec4 vec3\cf8 \strokec8  vPosition;\cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 attribute\cf8 \strokec8  \cf4 \strokec4 vec4\cf8 \strokec8  vColor;\cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 varying\cf8 \strokec8  \cf4 \strokec4 vec4\cf8 \strokec8  fColor;\cf5 \strokec5 \
+\cf8 \strokec8     \cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 uniform\cf8 \strokec8  \cf4 \strokec4 mat4\cf8 \strokec8  modelViewMatrix;\cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 uniform\cf8 \strokec8  \cf4 \strokec4 mat4\cf8 \strokec8  projectionMatrix;\cf5 \strokec5 \
+\cf8 \strokec8     \cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 uniform\cf8 \strokec8  \cf4 \strokec4 vec3\cf8 \strokec8  theta;\cf5 \strokec5 \
+\
+\cf8 \strokec8     \cf4 \strokec4 void\cf8 \strokec8  main()\{\cf5 \strokec5 \
+\cf8 \strokec8         \cf5 \strokec5 \
+\cf8 \strokec8         \cf9 \strokec9 // Compute the sines and cosines of theta\cf5 \strokec5 \
+\cf8 \strokec8         \cf4 \strokec4 vec3\cf8 \strokec8  angles = \cf10 \strokec10 radians\cf8 \strokec8 (theta);\cf5 \strokec5 \
+\cf8 \strokec8         \cf4 \strokec4 vec3\cf8 \strokec8  c = \cf10 \strokec10 cos\cf8 \strokec8 (angles);\cf5 \strokec5 \
+\cf8 \strokec8         \cf4 \strokec4 vec3\cf8 \strokec8  s = \cf10 \strokec10 sin\cf8 \strokec8 (angles);\cf5 \strokec5 \
+\
+\cf8 \strokec8         \cf9 \strokec9 // Calculate the matrices\cf5 \strokec5 \
+\cf8 \strokec8         \cf4 \strokec4 mat4\cf8 \strokec8  rx = \cf4 \strokec4 mat4\cf8 \strokec8 (\cf11 \strokec11 1.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , c.x, s.x, \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , -s.x, c.x, \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 );\cf5 \strokec5 \
+\cf8 \strokec8         \cf5 \strokec5 \
+\cf8 \strokec8         \cf4 \strokec4 mat4\cf8 \strokec8  ry = \cf4 \strokec4 mat4\cf8 \strokec8 (c.y, \cf11 \strokec11 0.0\cf8 \strokec8 , -s.y, \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        s.y, \cf11 \strokec11 0.0\cf8 \strokec8 , c.y, \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 );\cf5 \strokec5 \
+\
+\cf8 \strokec8         \cf4 \strokec4 mat4\cf8 \strokec8  rz = \cf4 \strokec4 mat4\cf8 \strokec8 (c.z, s.z, \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        -s.z, c.z, \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 ,\cf5 \strokec5 \
+\cf8 \strokec8                        \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 0.0\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 );\cf5 \strokec5 \
+\cf8 \strokec8         \cf5 \strokec5 \
+\cf8 \strokec8         fColor = vColor;\cf5 \strokec5 \
+\cf8 \strokec8         \cf6 \strokec6 gl_Position\cf8 \strokec8  = projectionMatrix * modelViewMatrix * rz * ry * rx * \cf4 \strokec4 vec4\cf8 \strokec8 (vPosition, \cf11 \strokec11 1.0\cf8 \strokec8 );\cf5 \strokec5 \
+\cf8 \strokec8         \cf6 \strokec6 gl_Position\cf8 \strokec8 .z = -\cf6 \strokec6 gl_Position\cf8 \strokec8 .z; \cf5 \strokec5 \
+\cf8 \strokec8     \}\cf5 \strokec5 \
+\cf8 \strokec8     \cf2 \strokec2 </\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 id\cf8 \strokec8 =\cf7 \strokec7 "fragment-shader"\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "x-shader/x-fragment"\cf2 \strokec2 >\cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 precision\cf8 \strokec8  \cf4 \strokec4 mediump\cf8 \strokec8  \cf4 \strokec4 float\cf8 \strokec8 ;\cf5 \strokec5 \
+\cf8 \strokec8     \cf5 \strokec5 \
+\cf8 \strokec8     \cf4 \strokec4 varying\cf8 \strokec8  \cf4 \strokec4 vec4\cf8 \strokec8  fColor;\cf5 \strokec5 \
+\
+\cf8 \strokec8     \cf4 \strokec4 void\cf8 \strokec8  main()\{\cf5 \strokec5 \
+\cf8 \strokec8         \cf6 \strokec6 gl_FragColor\cf8 \strokec8  = \cf4 \strokec4 vec4\cf8 \strokec8 (\cf11 \strokec11 0.5\cf8 \strokec8 , \cf11 \strokec11 0\cf8 \strokec8 , \cf11 \strokec11 0.5\cf8 \strokec8 , \cf11 \strokec11 1.0\cf8 \strokec8 );\cf5 \strokec5 \
+\cf8 \strokec8     \}\cf5 \strokec5 \
+\cf8 \strokec8     \cf2 \strokec2 </\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "text/javascript"\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "webgl-utils.js"\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "text/javascript"\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "initShaders.js"\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "text/javascript"\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "MV.js"\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "gl-matrix-min.js"\cf8 \strokec8  \cf6 \strokec6 defer\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "text/javascript"\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "gasket5.js"\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 script\cf8 \strokec8  \cf6 \strokec6 type\cf8 \strokec8 =\cf7 \strokec7 "text/javascript"\cf8 \strokec8  \cf6 \strokec6 src\cf8 \strokec8 =\cf7 \strokec7 "webgl-lessons-ui.js"\cf2 \strokec2 ></\cf4 \strokec4 script\cf2 \strokec2 >\cf5 \strokec5 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \strokec2 </\cf4 \strokec4 head\cf2 \strokec2 >\cf5 \strokec5 \
+\
+\cf2 \strokec2 <\cf4 \strokec4 body\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+        Subdivisions: 0  \cf2 \strokec2 <\cf4 \strokec4 input\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "slider"\cf5 \strokec5  \cf6 \strokec6 type\cf5 \strokec5 =\cf7 \strokec7 "range"\cf5 \strokec5 \
+        \cf6 \strokec6 min\cf5 \strokec5 = \cf7 \strokec7 "0"\cf5 \strokec5  \cf6 \strokec6 max\cf5 \strokec5 = \cf7 \strokec7 "6"\cf5 \strokec5  \cf6 \strokec6 step\cf5 \strokec5  = \cf7 \strokec7 "1"\cf5 \strokec5  \cf6 \strokec6 value\cf5 \strokec5  = \cf7 \strokec7 "0"\cf5 \strokec5  \cf2 \strokec2 />\cf5 \strokec5 \
+        6\
+    \cf2 \strokec2 </\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 h3\cf2 \strokec2 ><\cf4 \strokec4 b\cf2 \strokec2 >\cf5 \strokec5 Cube Rotation Options\cf2 \strokec2 </\cf4 \strokec4 b\cf2 \strokec2 ></\cf4 \strokec4 h3\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 button\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "rotateXBtn"\cf2 \strokec2 >\cf5 \strokec5 Rotate X\cf2 \strokec2 </\cf4 \strokec4 button\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 button\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "rotateYBtn"\cf2 \strokec2 >\cf5 \strokec5 Rotate Y\cf2 \strokec2 </\cf4 \strokec4 button\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 button\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "rotateZBtn"\cf2 \strokec2 >\cf5 \strokec5 Rotate Z\cf2 \strokec2 </\cf4 \strokec4 button\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 br\cf2 \strokec2 ><\cf4 \strokec4 br\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 h3\cf2 \strokec2 ><\cf4 \strokec4 b\cf2 \strokec2 >\cf5 \strokec5 Camera Movement Options\cf2 \strokec2 </\cf4 \strokec4 b\cf2 \strokec2 ></\cf4 \strokec4 h3\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 Use radius slider to zoom in or out\cf2 \strokec2 </\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 Use theta to move camera left and right\cf2 \strokec2 </\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 Use phi to move camera up and down\cf2 \strokec2 </\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+        Radius 0.05\cf2 \strokec2 <\cf4 \strokec4 input\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "radiusSlider"\cf5 \strokec5  \cf6 \strokec6 type\cf5 \strokec5 =\cf7 \strokec7 "range"\cf5 \strokec5 \
+        \cf6 \strokec6 min\cf5 \strokec5 =\cf7 \strokec7 "0.05"\cf5 \strokec5  \cf6 \strokec6 max\cf5 \strokec5 =\cf7 \strokec7 "10"\cf5 \strokec5  \cf6 \strokec6 step\cf5 \strokec5 =\cf7 \strokec7 "0.1"\cf5 \strokec5  \cf6 \strokec6 value\cf5 \strokec5 =\cf7 \strokec7 "2.5"\cf5 \strokec5  \cf2 \strokec2 />\cf5 \strokec5 \
+        10\
+    \cf2 \strokec2 </\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+        Theta \uc0\u415  -180\cf2 \strokec2 <\cf4 \strokec4 input\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "thetaSlider"\cf5 \strokec5  \cf6 \strokec6 type\cf5 \strokec5 =\cf7 \strokec7 "range"\cf5 \strokec5 \
+        \cf6 \strokec6 min\cf5 \strokec5 =\cf7 \strokec7 "-180"\cf5 \strokec5  \cf6 \strokec6 max\cf5 \strokec5 =\cf7 \strokec7 "180"\cf5 \strokec5  \cf6 \strokec6 step\cf5 \strokec5 =\cf7 \strokec7 "4"\cf5 \strokec5  \cf6 \strokec6 value\cf5 \strokec5 =\cf7 \strokec7 "0"\cf5 \strokec5  \cf2 \strokec2 />\cf5 \strokec5 \
+        180\
+    \cf2 \strokec2 </\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+        Phi \uc0\u632  -180\cf2 \strokec2 <\cf4 \strokec4 input\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "phiSlider"\cf5 \strokec5  \cf6 \strokec6 type\cf5 \strokec5 =\cf7 \strokec7 "range"\cf5 \strokec5 \
+        \cf6 \strokec6 min\cf5 \strokec5 =\cf7 \strokec7 "-180"\cf5 \strokec5  \cf6 \strokec6 max\cf5 \strokec5 =\cf7 \strokec7 "180"\cf5 \strokec5  \cf6 \strokec6 step\cf5 \strokec5 =\cf7 \strokec7 "4"\cf5 \strokec5  \cf6 \strokec6 value\cf5 \strokec5 =\cf7 \strokec7 "0"\cf5 \strokec5  \cf2 \strokec2 />\cf5 \strokec5 \
+        180\
+    \cf2 \strokec2 </\cf4 \strokec4 div\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 canvas\cf5 \strokec5  \cf6 \strokec6 id\cf5 \strokec5 =\cf7 \strokec7 "gl-canvas"\cf5 \strokec5  \cf6 \strokec6 width\cf5 \strokec5 =\cf7 \strokec7 "512"\cf5 \strokec5  \cf6 \strokec6 height\cf5 \strokec5 =\cf7 \strokec7 "512"\cf2 \strokec2 >\cf5 \strokec5 \
+        Oops ... your browser doesn't support the HTML5 canvas element\
+    \cf2 \strokec2 </\cf4 \strokec4 canvas\cf2 \strokec2 >\cf5 \strokec5 \
+\
+    \cf2 \strokec2 <\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 Copyright \'a9 2023 Justyce Countryman\cf2 \strokec2 </\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 \
+    \cf2 \strokec2 <\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 All rights reserved\cf2 \strokec2 </\cf4 \strokec4 p\cf2 \strokec2 >\cf5 \strokec5 \
+\cf2 \strokec2 </\cf4 \strokec4 body\cf2 \strokec2 >\cf5 \strokec5 \
+\cf2 \strokec2 </\cf4 \strokec4 html\cf2 \strokec2 >\cf12 \cb1 \strokec12 \
+}
