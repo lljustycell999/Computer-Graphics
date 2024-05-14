@@ -2,29 +2,25 @@
 This repository contains the projects completed as part of a computer graphics course.
 
 # Homework 1 Specification:
-Implement a Sierpinski carpet in WebGL. Subdivide it to at least three steps.
+<img width="1429" alt="Screenshot 2024-05-13 at 11 48 48 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/7582f419-029e-48cc-ab7c-550aacb5b9ee">
 
 # Homework 2 Specification:
-Upgrade HW1 by adding manipulation and animation to the carpet. Add a slider to your web page, starting at 1 and going up to 7; the position of the slider should determine the number of subdivisions of your carpet. In addition, add a button to your page. When the button is clicked, every square of the carpet should start rotating. If you click the button again, the rotation should stop. If you click on the canvas while the squares are rotating, they should invert their rotation.
+<img width="1429" alt="Screenshot 2024-05-13 at 11 48 58 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/c6f03aaa-3b09-4708-8b73-838eb3364f09">
 
 # Homework 3 Specification:
-Upgrade HW2 by doing matrix transformations inside the vertex shader. The rotation now should be applied to each square separately, meaning each square should rotate around its own center, rather than the global origin. Everything else (the slider, button, canvas click) should remain on the page and preserve its functionality. Make sure you apply the angle calculation and matrix multiplications inside the shader, as opposed to your javascript.
-
-If you are brave, you can use quarternions for the rotation. You don't have to: a simple rotation matrix around Z will work well here.
+<img width="1429" alt="Screenshot 2024-05-13 at 11 49 06 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/a7629990-a0a3-46c6-8feb-09ce63c9a7cd">
 
 # Homework 4 Specification:
-Upgrade HW3 by extending the carpet into the third dimension: each square now becomes a cube, while still lying within the same plane. The cubes are able to rotate around their own center in any direction within the 3D space (think of a good way to take that input from the user). In addition, add camera motion and rotation in all three dimensions, so that we can zoom in between the cubes and see them from the side. Again, think of a good way to take input to control the camera from the user. You can use either perspective or orthographic projection.
+<img width="1429" alt="Screenshot 2024-05-13 at 11 49 12 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/b218454d-b425-4d91-87dc-8058c3352aae">
 
 # Homework 5 Specification:
-Upgrade HW4 by adding textures to the scene. Either use the code provided in the slides to create a checkerboard texture, or load an image of yours from an image file and convert it to a texture. Use that texture for every square of your Sierpinski carpet, making sure to apply the right mapping to all triangles in the scene. Remember to keep the code from previous homeworks, as well, such as lighting and camera motion.
+<img width="1429" alt="Screenshot 2024-05-13 at 11 49 22 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/6288f9cf-55e4-4ce6-b7f8-9adc5e5402fb">
 
 # Homework 6 Specification:
-Upgrade HW5 by adding a texture and a normal map to the scene. You can use this texture with this normal map. Use that texture/normal map for every square of your Sierpinski carpet, making sure to apply the right mapping to all triangles in the scene. Remember to keep the code from previous homeworks, as well, such as lighting and camera motion.
-
-In addition, change the positions of your carpet vertices in the Z direction. This will make your carpet non-flat, and will add some interesting visuals to the normal map.
+<img width="1430" alt="Screenshot 2024-05-13 at 11 49 31 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/9cdfb559-0d12-46a8-a32d-570e8230199a">
 
 # Homework 7 Specification:
-This is the last homework of the course. Write an interesting and non-trivial graphics demo using everything you have learned in the course. Make it fancy by playing with the shaders, materials, etc. Impress me.
+<img width="1430" alt="Screenshot 2024-05-13 at 11 49 39 PM" src="https://github.com/lljustycell999/Computer-Graphics/assets/123667513/f0002b44-f949-4977-ac5b-d220788068d6">
 
-My final project creation was a disco dance floor screensaver, consisting of a bunch of color changing tiles, a night star sky background, and a sorta 3D disco ball.
+* My final project creation was a disco dance floor screensaver, consisting of a bunch of color-changing tiles, a night star sky background, and a sorta 3D disco ball.
 
