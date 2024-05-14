@@ -1,5 +1,5 @@
-# CSC 470 - Computer Graphics
-This repository contains the projects completed as part of the CSC 470 - Computer Graphics course at SUNY Oswego taught by Professor Aleksander Pantaleev.
+# Computer Graphics
+This repository contains the projects completed as part of a computer graphics course.
 
 # Homework 1 Specification:
 Implement a Sierpinski carpet in WebGL. Subdivide it to at least three steps.
